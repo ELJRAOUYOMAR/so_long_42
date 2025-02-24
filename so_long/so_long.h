@@ -2,9 +2,15 @@
 # define SO_LONG_H
 
 # include "minilibx-linux/mlx.h"
+# include "lib/ft_printf/ft_printf.h"
+# include "lib/libft/libft.h"
+
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
+#include <string.h>
 # include <fcntl.h>
+#include <math.h>
 
 typedef struct s_coordinate
 {
@@ -32,11 +38,19 @@ typedef struct s_game
 {
     void *mlx;          // pointer to the mlx instance
     void *win;          // pointer to the window
-    t_player player;    // player struct
-    t_map map;          // map struct
+    t_player *player;    // player struct
+    t_map *map;          // map struct
     unsigned int moves; // number of moves the player has made
 }   t_game;
 
 
+/**************** utils.c ******************/
+void free_arr(char **map);
+void destroy_game(t_game *game);
+int exit_game(t_game *game);
+void throw_error(t_game *game, char *msg, int error);
+
+/****************  init_game.c ***************/
+t_game *init_game(void);
 
 #endif 
